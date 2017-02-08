@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "97590285212",
+    "firebase_url": "https://smart-pill-dispenser-9cfbb.firebaseio.com",
+    "project_id": "smart-pill-dispenser-9cfbb",
+    "storage_bucket": "smart-pill-dispenser-9cfbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97590285212:android:bfd6eb103d87b131",
+        "android_client_info": {
+          "package_name": "com.example.kannaphat.smartpiidispenser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97590285212-u1h8pdk9r4kc8t96m42a6kvre4et6ksf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrkaFXWEYt43aafruvDR8VAx6nq9jkHiU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
