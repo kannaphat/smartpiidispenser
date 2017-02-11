@@ -61,7 +61,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
     @Override
     private void createAccount(String email, String password) {
         if (!validateForm()) {
@@ -73,10 +72,30 @@ public class MainActivity extends BaseActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                hideProgressDialog();
+                    hideProgressDialog();
+                }
             }
         });
     }
+
+    private void signIn(String email, String password) {
+        if (!validateForm()) {
+            return;
+        }
+        showProgressDialog();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
+                if (!task.isSuccessful()) {
+                    Log.w("TAG", "signInWithEmail", task.getException().getMessage());
+                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    hideProgressDialog();
+                }
+            }
+        });
+    }
+
 
     private boolean validateForm() {
         if (TextUtils.isEmpty(text_user.getText().toString())) {
