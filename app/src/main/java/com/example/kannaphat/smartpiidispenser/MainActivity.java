@@ -1,31 +1,34 @@
 package com.example.kannaphat.smartpiidispenser;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    EditText text_user = (EditText) findViewById(R.id.text_user);
+    EditText text_pass = (EditText) findViewById(R.id.text_pass);
+    Button btn_login = (Button) findViewById(R.id.btn_login);
+    Button btn_regis = (Button) findViewById(R.id.btn_regis);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        EditText text_user = (EditText) findViewById(R.id.text_user);
-        EditText text_pass = (EditText) findViewById(R.id.text_pass);
-        Button btn_login = (Button) findViewById(R.id.btn_login);
 
         mAuth = FirebaseAuth.getInstance();
         //รอรับข้อมูลจากuser
@@ -42,29 +45,53 @@ public class MainActivity extends AppCompatActivity {
                     // ...
                 }
             };
-            //press login to secode main
-            btn_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(i);
-                }
-            });
         }
 
-        @Override
-        public void onStart() {
-            super.onStart();
-            mAuth.addAuthStateListener(mAuthListener);
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
-        @Override
-        public void onStop() {
-            super.onStop();
-            if (mAuthListener != null) {
-                mAuth.removeAuthStateListener(mAuthListener);
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+
+    @Override
+    private void createAccount(String email, String password) {
+        if (!validateForm()) {
+            return;
+        }
+        showProgressDialog();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                hideProgressDialog();
             }
+        });
+    }
+
+    private boolean validateForm() {
+        if (TextUtils.isEmpty(text_user.getText().toString())) {
+            text_user.setError("Required.");
+            return false;
+        } else if (TextUtils.isEmpty(text_pass.getText().toString())) {
+            text_pass.setError("Required.");
+            return false;
+        } else {
+            text_user.setError(null);
+            return true;
         }
+    }
+
+
 }
 
 
