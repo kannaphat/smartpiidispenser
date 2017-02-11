@@ -31,21 +31,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.btn_regis:
-                        createAccount(text_user.getText().toString(), text_pass.getText().toString());
-                        break;
-                    case R.id.btn_login:
-                        signIn(text_user.getText().toString(), text_pass.getText().toString());
-                        break;
-                }
-            }
-
-        });
-
         mAuth = FirebaseAuth.getInstance();
         //รอรับข้อมูลจากuser
             mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -125,4 +110,15 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_regis:
+                createAccount(text_user.getText().toString(), text_pass.getText().toString());
+                break;
+            case R.id.btn_login:
+                signIn(text_user.getText().toString(), text_pass.getText().toString());
+                break;
+        }
+    }
 }
