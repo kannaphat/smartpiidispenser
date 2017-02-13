@@ -17,19 +17,25 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    final EditText text_user = (EditText) findViewById(R.id.text_user);
-    final EditText text_pass = (EditText) findViewById(R.id.text_pass);
+    EditText text_user = (EditText) findViewById(R.id.text_user);
+    EditText text_pass = (EditText) findViewById(R.id.text_pass);
     Button btn_login = (Button) findViewById(R.id.btn_login);
     Button btn_regis = (Button) findViewById(R.id.btn_regis);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.btn_login).setOnClickListener(this);
+        findViewById(R.id.btn_regis).setOnClickListener(this);
+
 
         mAuth = FirebaseAuth.getInstance();
         //รอรับข้อมูลจากuser
@@ -39,9 +45,9 @@ public class MainActivity extends BaseActivity {
                     FirebaseUser user = firebaseAuth.getCurrentUser();
                     if (user != null) {
                         // User is signed in
-                        Log.d("TAG", "onAuthStateChanged:signed_in:" + user.getUid());
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     } else {
-                        Log.d("TAG", "onAuthStateChanged:signed_out");
+                        Log.d(TAG, "onAuthStateChanged:signed_out");
                     }
                     // ...
                 }
@@ -87,9 +93,9 @@ public class MainActivity extends BaseActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
+                Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                 if (!task.isSuccessful()) {
-                    Log.w("TAG", "signInWithEmail", task.getException());
+                    Log.w(TAG, "signInWithEmail", task.getException());
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     hideProgressDialog();
                 }
@@ -109,7 +115,6 @@ public class MainActivity extends BaseActivity {
             return true;
         }
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
