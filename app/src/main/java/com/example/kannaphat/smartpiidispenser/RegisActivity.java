@@ -39,10 +39,7 @@ public class RegisActivity extends BaseActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String view_uid = user.getUid();
+            view_uid.setText("You id = "+user.getUid());
         }
     }
 
