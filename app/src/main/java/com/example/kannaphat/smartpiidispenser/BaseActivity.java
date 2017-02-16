@@ -29,5 +29,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         hideProgressDialog();
     }
 
-    protected abstract void createAccount(String email, String password);
+
 }

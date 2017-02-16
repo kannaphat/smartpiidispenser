@@ -1,6 +1,6 @@
 package com.example.kannaphat.smartpiidispenser;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -21,11 +21,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    EditText text_user = (EditText) findViewById(R.id.text_user);
-    EditText text_pass = (EditText) findViewById(R.id.text_pass);
-    Button btn_login = (Button) findViewById(R.id.btn_login);
-    Button btn_regis = (Button) findViewById(R.id.btn_regis);
+    private EditText text_user, text_pass;
+    private Button btn_login, btn_regis;
 
 
     @Override
@@ -33,6 +30,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        text_user = (EditText) findViewById(R.id.text_user);
+        text_pass = (EditText) findViewById(R.id.text_pass);
+        btn_login = (Button) findViewById(R.id.btn_login);
+        btn_regis = (Button) findViewById(R.id.btn_regis);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_regis).setOnClickListener(this);
 
@@ -68,8 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    @Override
-    protected void createAccount(String email, String password) {
+    private void createAccount(String email, String password) {
         if (!validateForm()) {
             return;
         }
@@ -81,7 +81,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     hideProgressDialog();
                 }
+                else {
+                    Intent i = new Intent(MainActivity.this,RegisActivity.class);
+                    //Bundle b = new Bundle();
+                    //b.putString("uid",user.getUid());
+                    //i.putExtras(b);
+                    startActivity(i);
+                }
+
             }
+
         });
     }
 
