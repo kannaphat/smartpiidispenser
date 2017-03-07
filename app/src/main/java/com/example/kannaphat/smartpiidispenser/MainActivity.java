@@ -1,8 +1,11 @@
 package com.example.kannaphat.smartpiidispenser;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button btn_login, btn_regis;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_regis = (Button) findViewById(R.id.btn_regis);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_regis).setOnClickListener(this);
-
 
         mAuth = FirebaseAuth.getInstance();
         //รอรับข้อมูลจากuser
@@ -87,6 +90,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     //b.putString("uid",user.getUid());
                     //i.putExtras(b);
                     startActivity(i);
+                    hideProgressDialog();
                 }
 
             }
@@ -107,6 +111,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     Log.w(TAG, "signInWithEmail", task.getException());
                     Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     hideProgressDialog();
+                }
+                else {
+                    Intent j = new Intent(MainActivity.this,LoginActivity.class);
+                    //Bundle b = new Bundle();
+                    //b.putString("uid",user.getUid());
+                    //i.putExtras(b);
+                    startActivity(j);
                 }
             }
         });
@@ -135,4 +146,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
 }

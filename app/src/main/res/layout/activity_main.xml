@@ -27,7 +27,7 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/text_user"
-        android:hint="UsernameandEmail"
+        android:hint="Email"
         android:layout_below="@+id/imglogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp" />
@@ -45,22 +45,45 @@
         android:layout_alignStart="@+id/text_user" />
 
     <Button
+        android:text="Forget password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_forgot"
+        android:background="null"
+        android:layout_below="@+id/chb_stay"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:text="Remember me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_stay"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/btn_login"
+        android:layout_centerHorizontal="true" />
+
+    <Button
         android:text="login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_login"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="26dp"
         android:layout_below="@+id/text_pass"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/btn_regis"
+        android:layout_toStartOf="@+id/btn_regis"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" />
 
     <Button
         android:text="regis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:id="@+id/btn_regis"
-        android:layout_below="@+id/btn_login"
-        android:layout_alignLeft="@+id/btn_login"
-        android:layout_alignStart="@+id/btn_login" />
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignBaseline="@+id/btn_login"
+        android:layout_alignBottom="@+id/btn_login"
+        android:layout_alignRight="@+id/text_pass"
+        android:layout_alignEnd="@+id/text_pass" />
 
 </RelativeLayout>
