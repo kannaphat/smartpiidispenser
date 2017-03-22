@@ -1,11 +1,9 @@
 package com.example.kannaphat.smartpiidispenser;
 
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
-
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +36,7 @@ public class RegisActivity extends BaseActivity {
             }
         };
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             view_uid.setText("You id = "+user.getUid());
         }

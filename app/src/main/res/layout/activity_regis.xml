@@ -21,4 +21,138 @@
         android:layout_marginLeft="26dp"
         android:layout_marginStart="26dp" />
 
+    <TextView
+        android:text="Name :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/text_name"
+        android:layout_alignBaseline="@+id/ET_name"
+        android:layout_alignBottom="@+id/ET_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Age :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_age"
+        android:layout_alignBaseline="@+id/ET_age"
+        android:layout_alignBottom="@+id/ET_age"
+        android:layout_alignLeft="@+id/text_nickname"
+        android:layout_alignStart="@+id/text_nickname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ET_nickname"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/ET_age"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ET_name"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/ET_nickname"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Pleaes input your information..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/text_please"
+        android:layout_above="@+id/ET_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="31dp" />
+
+    <TextView
+        android:text="Nickname :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_nickname"
+        android:layout_alignBaseline="@+id/ET_nickname"
+        android:layout_alignBottom="@+id/ET_nickname"
+        android:layout_alignLeft="@+id/text_name"
+        android:layout_alignStart="@+id/text_name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="22dp"
+        android:id="@+id/ET_hospital"
+        android:layout_below="@+id/ET_disease"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Hospital :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_hospital"
+        android:layout_alignBaseline="@+id/ET_hospital"
+        android:layout_alignBottom="@+id/ET_hospital"
+        android:layout_alignLeft="@+id/text_disease"
+        android:layout_alignStart="@+id/text_disease" />
+
+    <TextView
+        android:text="Congenital
+Disease : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="17dp"
+        android:id="@+id/text_disease"
+        android:layout_below="@+id/ET_age"
+        android:layout_alignLeft="@+id/text_age"
+        android:layout_alignStart="@+id/text_age" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:id="@+id/btn_next"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ET_age"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ET_disease"
+        android:layout_alignBottom="@+id/text_disease"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

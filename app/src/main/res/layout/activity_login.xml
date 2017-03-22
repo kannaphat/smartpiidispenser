@@ -4,6 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -21,13 +22,64 @@
         android:layout_marginLeft="26dp"
         android:layout_marginStart="26dp" />
 
-    <Button
-        android:text="Logout"
+    <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/btn_logout" />
+        android:id="@+id/textView"
+        android:layout_below="@+id/tv_uid"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
+    <Button
+        android:text="Logout"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:id="@+id/btn_logout"
+        android:layout_below="@+id/btn_qr"
+        android:layout_alignLeft="@+id/btn_history"
+        android:layout_alignStart="@+id/btn_history"
+        android:gravity="center"
+        android:layout_marginTop="17dp" />
+
+    <Button
+        android:text="Data pill"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_pil"
+        android:gravity="center"
+        android:layout_below="@+id/btn_profile"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:text="History"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_history"
+        android:gravity="center"
+        android:layout_below="@+id/btn_pil"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+    android:text="scan QR code"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:id="@+id/btn_qr"
+        android:gravity="center"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/btn_history"
+        android:layout_alignLeft="@+id/btn_logout"
+        android:layout_alignStart="@+id/btn_logout" />
+
+    <Button
+        android:text="Profile"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btn_profile"
+        android:gravity="center"
+        android:layout_below="@+id/textView" />
 </RelativeLayout>
