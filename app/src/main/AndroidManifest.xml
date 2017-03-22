@@ -26,6 +26,7 @@
 
         <activity android:name=".BaseActivity" />
         <activity android:name=".RegisActivity" />
+        <activity android:name=".regis2Activity"></activity>
     </application>
 
 </manifest>

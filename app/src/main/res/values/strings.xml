@@ -4,4 +4,5 @@
     <string name="forget_password">Forget password</string>
     <string name="msg_send_success">Send Email Successful</string>
     <string name="error_send">Please fill any empty fields</string>
+    <string name="pleaesinput">Pleaesinput</string>
 </resources>

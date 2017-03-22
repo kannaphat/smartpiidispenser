@@ -87,6 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (user != null) {
                     Intent j = new Intent(MainActivity.this,LoginActivity.class);
                     startActivity(j);
+                    finish();
                 }
             }
         });
@@ -208,7 +209,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/USER/" + key, postValues);
-        childUpdates.put("/USER/" + key, postValues);
 
         mDatabase.updateChildren(childUpdates);
     }
@@ -229,7 +229,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_regis:
-                createAccount();
+                //createAccount();
+                Intent i = new Intent(MainActivity.this,RegisActivity.class);
+                startActivity(i);
+                finish();
                 break;
             case R.id.btn_login:
                 signIn();
