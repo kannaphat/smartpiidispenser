@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         email = text_user.getText().toString();
         password = text_pass.getText().toString();
-        putemailandpassword();
+        //putemailandpassword();
 
         editor.putString(KEY_USERNAME, email);
         editor.commit();

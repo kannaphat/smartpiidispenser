@@ -25,6 +25,7 @@ public class RegisActivity extends BaseActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase, mUsersRef;
+    private FirebaseUser user;
     private EditText ET_name,ET_nickname,ET_age,ET_disease,ET_hospital;
 
     @Override
@@ -53,7 +54,7 @@ public class RegisActivity extends BaseActivity {
             }
         };
         TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         if (user != null) {
             tv_uid.setText("You id = "+user.getUid());
         }
@@ -70,11 +71,11 @@ public class RegisActivity extends BaseActivity {
                 alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (!validateForm()) {return;}
-                        else {
-                        putprofile();
+                        //if (!validateForm()) {return;}
+                        //else {
+                        //putprofile();
                         Intent j = new Intent(RegisActivity.this,regis2Activity.class);
-                        startActivity(j);}
+                        startActivity(j);//}
                     }
                 });
                 alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -104,7 +105,6 @@ public class RegisActivity extends BaseActivity {
     }
 
     private void putprofile(){
-        if (!validateForm()) {return;}
 
         String name = ET_name.getText().toString();
         String nickname = ET_nickname.getText().toString();
@@ -119,6 +119,7 @@ public class RegisActivity extends BaseActivity {
         postprofileValues.put("age", age);
         postprofileValues.put("Congentital disease",disease);
         postprofileValues.put("Hospital",hospital);
+        postprofileValues.put("User id from firebase",user);
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/USER/" + key, postprofileValues);
