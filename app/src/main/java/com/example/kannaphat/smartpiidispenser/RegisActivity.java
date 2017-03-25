@@ -47,17 +47,16 @@ public class RegisActivity extends BaseActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
+                    tv_uid.setText("You id = "+user.getUid());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
                 // ...
             }
         };
-        TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
+
         user = mAuth.getCurrentUser();
-        if (user != null) {
-            tv_uid.setText("You id = "+user.getUid());
-        }
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUsersRef = mDatabase.child("users");
 
@@ -71,11 +70,14 @@ public class RegisActivity extends BaseActivity {
                 alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //if (!validateForm()) {return;}
-                        //else {
-                        //putprofile();
-                        Intent j = new Intent(RegisActivity.this,regis2Activity.class);
-                        startActivity(j);//}
+                        if (!validateForm()) {return;}
+                        else {
+                            putprofile();
+                            showProgressDialog();
+                            Intent j = new Intent(RegisActivity.this,regis2Activity.class);
+                            startActivity(j);
+                            hideProgressDialog();
+                        }
                     }
                 });
                 alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -119,7 +121,7 @@ public class RegisActivity extends BaseActivity {
         postprofileValues.put("age", age);
         postprofileValues.put("Congentital disease",disease);
         postprofileValues.put("Hospital",hospital);
-        postprofileValues.put("User id from firebase",user);
+        postprofileValues.put("User id from firebase",user.getUid());
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/USER/" + key, postprofileValues);

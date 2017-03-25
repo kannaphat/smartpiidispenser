@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_regis3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.kannaphat.smartpiidispenser.regis3Activity">
+
+    <TextView
+        android:text="Time To Alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_time" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_time"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:id="@+id/tv_uid" />
+
+    <TextView
+        android:text="Please input time you want to alert..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/text_please"
+        android:layout_below="@+id/tv_uid"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        android:text="Before meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_please"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp"
+        android:textStyle="bold"
+        android:id="@+id/text_before" />
+
+    <TextView
+        android:text="Breakfast :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_before"
+        android:layout_marginTop="14dp"
+        android:id="@+id/text_bb"
+        android:layout_alignRight="@+id/text_before"
+        android:layout_alignEnd="@+id/text_before" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tbb"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/text_bb" />
+
+    <TextView
+        android:text="Lunch :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_bl"
+        android:layout_alignBaseline="@+id/ET_tbl"
+        android:layout_alignBottom="@+id/ET_tbl"
+        android:layout_toLeftOf="@+id/text_time"
+        android:layout_toStartOf="@+id/text_time" />
+
+    <TextView
+        android:text="Dinner :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_bd"
+        android:layout_alignBaseline="@+id/ET_tbd"
+        android:layout_alignBottom="@+id/ET_tbd"
+        android:layout_alignRight="@+id/text_bl"
+        android:layout_alignEnd="@+id/text_bl" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tab"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/text_ab" />
+
+    <TextView
+        android:text="After meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/text_affter"
+        android:layout_below="@+id/ET_tbd"
+        android:layout_marginTop="3dp"
+        android:layout_alignRight="@+id/text_bd"
+        android:layout_alignEnd="@+id/text_bd" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tad"
+        android:layout_below="@+id/ET_tal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tal"
+        android:layout_below="@+id/ET_tab"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tan"
+        android:layout_below="@+id/ET_tad"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Night :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_an"
+        android:layout_alignBaseline="@+id/ET_tan"
+        android:layout_alignBottom="@+id/ET_tan"
+        android:layout_alignRight="@+id/text_ad"
+        android:layout_alignEnd="@+id/text_ad" />
+
+    <TextView
+        android:text="Lunch :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_al"
+        android:layout_alignBaseline="@+id/ET_tal"
+        android:layout_alignBottom="@+id/ET_tal"
+        android:layout_alignRight="@+id/text_ab"
+        android:layout_alignEnd="@+id/text_ab" />
+
+    <TextView
+        android:text="Dinner :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_ad"
+        android:layout_alignBaseline="@+id/ET_tad"
+        android:layout_alignBottom="@+id/ET_tad"
+        android:layout_alignRight="@+id/text_al"
+        android:layout_alignEnd="@+id/text_al" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tbd"
+        android:layout_below="@+id/ET_tbl"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/ET_tbl"
+        android:layout_below="@+id/ET_tbb"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Breakfast :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/text_ab"
+        android:layout_below="@+id/text_affter"
+        android:layout_alignLeft="@+id/text_affter"
+        android:layout_alignStart="@+id/text_affter" />
+
+    <Button
+        android:text="save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_timealert"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

@@ -30,7 +30,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
+
         final Button btn_logout = (Button) findViewById(R.id.btn_logout);
         btn_profile = (Button)findViewById(R.id.btn_profile);
         btn_pill = (Button)findViewById(R.id.btn_pil);
@@ -49,6 +49,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
+                    tv_uid.setText("You id = "+user.getUid());
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -58,11 +60,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         };
         sp = getSharedPreferences("statePreferences", Context.MODE_PRIVATE);
         editor = sp.edit();
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            tv_uid.setText("You id = "+user.getUid());
-        }
 
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("rememberme:"+sp.getString(KEY_USERNAME,""));

@@ -26,7 +26,8 @@
 
         <activity android:name=".BaseActivity" />
         <activity android:name=".RegisActivity" />
-        <activity android:name=".regis2Activity"></activity>
+        <activity android:name=".regis2Activity" />
+        <activity android:name=".regis3Activity"></activity>
     </application>
 
 </manifest>

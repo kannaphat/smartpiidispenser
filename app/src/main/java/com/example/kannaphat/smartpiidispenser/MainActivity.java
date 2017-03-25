@@ -23,9 +23,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -119,7 +116,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         email = text_user.getText().toString();
         password = text_pass.getText().toString();
-        //putemailandpassword();
 
         editor.putString(KEY_USERNAME, email);
         editor.commit();
@@ -201,18 +197,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
          alert.show();
     }
 
-    private void putemailandpassword () {
-        String key = mUsersRef.push().getKey();
-        HashMap<String, Object> postValues = new HashMap<>();
-        postValues.put("Email",email);
-        postValues.put("Password", password);
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/USER/" + key, postValues);
-
-        mDatabase.updateChildren(childUpdates);
-    }
-
     private boolean validateForm() {
         if (TextUtils.isEmpty(text_user.getText().toString())) {
             text_user.setError("Required.");
@@ -229,10 +213,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_regis:
-                //createAccount();
-                Intent i = new Intent(MainActivity.this,RegisActivity.class);
-                startActivity(i);
-                finish();
+                createAccount();
                 break;
             case R.id.btn_login:
                 signIn();

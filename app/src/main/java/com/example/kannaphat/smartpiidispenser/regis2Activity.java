@@ -27,6 +27,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
     private static final String TAG = "regis2Activity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
     private DatabaseReference mDatabase,mUsersRef,mPillsRef;
     private EditText ET_namepill, ET_num, ET_qua;
     private CheckBox chb_before,chb_after,chb_breakfast,chb_lunch,chb_dinner,chb_night;
@@ -63,6 +64,8 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
+                    tv_uid.setText("You id = "+user.getUid());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -70,12 +73,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
             }
         };
 
-        TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            tv_uid.setText("You id = "+user.getUid());
-        }
-
+        user = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUsersRef = mDatabase.child("USERS");
         mPillsRef = mDatabase.child("PILLS");
@@ -93,9 +91,9 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
                         if (!validateForm()) {return;}
                         else {
                             putdatapill();
-                            Intent j = new Intent(regis2Activity.this,LoginActivity.class);
+                            Intent j = new Intent(regis2Activity.this,regis3Activity.class);
                             startActivity(j);
-                            finish();
+                            hideProgressDialog();
                         }
                     }
                 });
@@ -103,6 +101,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
+                        hideProgressDialog();
                     }
                 });
                 alert.show();
@@ -148,6 +147,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/PILLS/" + key, postpillsValues);
+        showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);
     }
@@ -175,10 +175,17 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         if (chb_before.isChecked()==true) {
             if (chb_breakfast.isChecked() == true) {
                 arr[0] = "1";
-            } if (chb_lunch.isChecked() == true) {
+            }else if (chb_breakfast.isChecked() == false){
+                arr[0] = "0";
+            }
+            if (chb_lunch.isChecked() == true) {
                 arr[1] = "1";
-            } if (chb_dinner.isChecked() == true) {
+            }else if (chb_lunch.isChecked() == false) {
+                arr[1] = "0";
+            }if (chb_dinner.isChecked() == true) {
                 arr[2] = "1";
+            }else if (chb_dinner.isChecked() == false) {
+                arr[2] = "0";
             }
         }
         if (chb_before.isChecked() == false) {
@@ -189,10 +196,16 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         if (chb_after.isChecked()==true) {
             if (chb_breakfast.isChecked() == true) {
                 arr[3] = "1";
-            } if (chb_lunch.isChecked() == true) {
+            }else if (chb_breakfast.isChecked() == false){
+                arr[3] = "0";
+            }if (chb_lunch.isChecked() == true) {
                 arr[4] = "1";
-            } if (chb_dinner.isChecked() == true) {
+            }else if (chb_lunch.isChecked() == false) {
+                arr[4] = "0";
+            }if (chb_dinner.isChecked() == true) {
                 arr[5] = "1";
+            }else if (chb_dinner.isChecked() == false) {
+                arr[5] = "0";
             }
         }
         if (chb_after.isChecked() == false) {
@@ -201,7 +214,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
             arr[5] = "0";
         }
         if (chb_night.isChecked()==true) {
-                    arr[6] = "1";
+            arr[6] = "1";
                 }
         if (chb_night.isChecked()==false){
             arr[6] = "0";}
