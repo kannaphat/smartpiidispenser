@@ -26,7 +26,7 @@ public class regis3Activity extends BaseActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
-    private DatabaseReference mDatabase,mUsersRef,mPillsRef;
+    private DatabaseReference mDatabase,mTimealert;
     private EditText ET_tbb,ET_tbl,ET_tbd,ET_tab,ET_tal,ET_tad,ET_tan;
 
     @Override
@@ -45,6 +45,7 @@ public class regis3Activity extends BaseActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mTimealert = mDatabase.child("Time to alert");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -53,7 +54,7 @@ public class regis3Activity extends BaseActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-                    tv_uid.setText("You id = "+user.getUid());
+                    tv_uid.setText("You id = "+user.getEmail());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -116,18 +117,20 @@ public class regis3Activity extends BaseActivity {
         String tal = ET_tal.getText().toString();
         String tad = ET_tad.getText().toString();
         String tan = ET_tan.getText().toString();
+        String key = mTimealert.push().getKey();
 
-        HashMap<String, Object> postpillsValues = new HashMap<>();
-        postpillsValues.put("Before Breakfast",tbb);
-        postpillsValues.put("Before Lunch",tbl);
-        postpillsValues.put("Before Dinner",tbd);
-        postpillsValues.put("After breakfast",tab);
-        postpillsValues.put("After Lunch",tal);
-        postpillsValues.put("After Dinner",tad);
-        postpillsValues.put("Night",tan);
+        HashMap<String, Object> posttimeValues = new HashMap<>();
+        posttimeValues.put("Before Breakfast",tbb);
+        posttimeValues.put("Before Lunch",tbl);
+        posttimeValues.put("Before Dinner",tbd);
+        posttimeValues.put("After breakfast",tab);
+        posttimeValues.put("After Lunch",tal);
+        posttimeValues.put("After Dinner",tad);
+        posttimeValues.put("Night",tan);
+        posttimeValues.put("User id from firebase",user.getUid());
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/Time to alert/", postpillsValues);
+        childUpdates.put("/Time to alert/"+key, posttimeValues);
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

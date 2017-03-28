@@ -48,7 +48,7 @@ public class RegisActivity extends BaseActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-                    tv_uid.setText("You id = "+user.getUid());
+                    tv_uid.setText("You id = "+user.getEmail());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }

@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
     private DatabaseReference mDatabase, mUsersRef;
     private EditText text_user, text_pass;
     private Button btn_login, btn_regis;
@@ -56,7 +57,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
@@ -66,10 +67,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // ...
             }
         };
+
+        if (user != null) {
+            Intent j = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(j);
+            finish();
+        }
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUsersRef = mDatabase.child("users");
-
-
 
         sp = getSharedPreferences("statePreferences", Context.MODE_PRIVATE);
         editor = sp.edit();
@@ -80,12 +86,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 editor.putBoolean(KEY_REMEMBER, isChecked);
                 editor.commit();
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    Intent j = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(j);
-                    finish();
-                }
             }
         });
         boolean isRemember = sp.getBoolean(KEY_REMEMBER, false);
@@ -117,19 +117,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         email = text_user.getText().toString();
         password = text_pass.getText().toString();
 
-        editor.putString(KEY_USERNAME, email);
-        editor.commit();
         showProgressDialog();
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                     hideProgressDialog();
                 }
                 else {
                     Intent i = new Intent(MainActivity.this,RegisActivity.class);
                     startActivity(i);
+                    finish();
                     hideProgressDialog();
                 }
 
@@ -144,12 +143,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         email = text_user.getText().toString();
         password = text_pass.getText().toString();
-        editor.putString(KEY_USERNAME, email);
-        editor.commit();
         showProgressDialog();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                 if (!task.isSuccessful()) {
                     Log.w(TAG, "signInWithEmail", task.getException());
@@ -175,7 +173,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 if(!temail.getText().toString().isEmpty()) {
-                    FirebaseAuth auth = FirebaseAuth.getInstance();
                     mAuth.sendPasswordResetEmail(temail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(Task<Void> task) {

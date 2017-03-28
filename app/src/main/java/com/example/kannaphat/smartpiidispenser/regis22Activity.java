@@ -22,15 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class regis2Activity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+public class regis22Activity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
-    private static final String TAG = "regis2Activity";
+    private static final String TAG = "regis22Activity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
     private DatabaseReference mDatabase,mPillsRef;
-    private EditText ET_namepill, ET_num, ET_qua;
-    private CheckBox chb_before,chb_after,chb_breakfast,chb_lunch,chb_dinner,chb_night,chb_don;
+    private EditText ET_namepill2, ET_num2, ET_qua2;
+    private CheckBox chb_before2,chb_after2,chb_breakfast2,chb_lunch2,chb_dinner2,chb_night2,chb_don2;
     private String[] arr1 = new String[7] ;
     private int don;
 
@@ -38,25 +38,25 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regis2);
+        setContentView(R.layout.activity_regis22);
 
-        ET_namepill = (EditText) findViewById(R.id.ET_namepill);
-        ET_num = (EditText) findViewById(R.id.ET_num);
-        ET_qua = (EditText) findViewById(R.id.ET_qua);
-        chb_before = (CheckBox) findViewById(R.id.chb_before);
-        chb_before.setOnCheckedChangeListener(this);
-        chb_after = (CheckBox) findViewById(R.id.chb_after);
-        chb_after.setOnCheckedChangeListener(this);
-        chb_breakfast = (CheckBox) findViewById(R.id.chb_breakfast);
-        chb_breakfast.setOnCheckedChangeListener(this);
-        chb_lunch = (CheckBox) findViewById(R.id.chb_lunch);
-        chb_lunch.setOnCheckedChangeListener(this);
-        chb_dinner = (CheckBox) findViewById(R.id.chb_dinner);
-        chb_dinner.setOnCheckedChangeListener(this);
-        chb_night = (CheckBox) findViewById(R.id.chb_night);
-        chb_night.setOnCheckedChangeListener(this);
-        chb_don = (CheckBox) findViewById(R.id.chb_don);
-        chb_don.setOnCheckedChangeListener(this);
+        ET_namepill2 = (EditText) findViewById(R.id.ET_namepill2);
+        ET_num2 = (EditText) findViewById(R.id.ET_num2);
+        ET_qua2 = (EditText) findViewById(R.id.ET_qua2);
+        chb_before2 = (CheckBox) findViewById(R.id.chb_before2);
+        chb_before2.setOnCheckedChangeListener(this);
+        chb_after2 = (CheckBox) findViewById(R.id.chb_after2);
+        chb_after2.setOnCheckedChangeListener(this);
+        chb_breakfast2 = (CheckBox) findViewById(R.id.chb_breakfast2);
+        chb_breakfast2.setOnCheckedChangeListener(this);
+        chb_lunch2 = (CheckBox) findViewById(R.id.chb_lunch2);
+        chb_lunch2.setOnCheckedChangeListener(this);
+        chb_dinner2 = (CheckBox) findViewById(R.id.chb_dinner2);
+        chb_dinner2.setOnCheckedChangeListener(this);
+        chb_night2 = (CheckBox) findViewById(R.id.chb_night2);
+        chb_night2.setOnCheckedChangeListener(this);
+        chb_don2 = (CheckBox) findViewById(R.id.chb_don2);
+        chb_don2.setOnCheckedChangeListener(this);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -80,11 +80,11 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mPillsRef = mDatabase.child("PILLS");
 
-        Button btn_savepill = (Button) findViewById(R.id.btn_savepill);
-        btn_savepill.setOnClickListener(new View.OnClickListener() {
+        Button btn_savepill2 = (Button) findViewById(R.id.btn_savepill2);
+        btn_savepill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(regis2Activity.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(regis22Activity.this);
                 alert.setMessage("Are you want to save information?");
                 alert.setCancelable(false);
                 alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -94,14 +94,15 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
                         else {
                             putdatapill();
                             if (don==1) {
-                                Intent j = new Intent(regis2Activity.this,regis3Activity.class);
+                                Intent j = new Intent(regis22Activity.this,regis3Activity.class);
                                 startActivity(j);
                                 don =0;
                             }
                             else {
-                                Intent k =new Intent(regis2Activity.this,regis22Activity.class);
-                                startActivity(k);
+                            Intent k = new Intent(regis22Activity.this, regis23Activity.class);
+                            startActivity(k);
                             }
+
                         }
                     }
                 });
@@ -133,9 +134,9 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
 
     private void putdatapill(){
 
-        String name = ET_namepill.getText().toString();
-        String num = ET_num.getText().toString();
-        String qua = ET_qua.getText().toString();
+        String name = ET_namepill2.getText().toString();
+        String num = ET_num2.getText().toString();
+        String qua = ET_qua2.getText().toString();
         String key = mPillsRef.push().getKey();
 
         HashMap<String, Object> postperiodValues = new HashMap<>();
@@ -162,75 +163,74 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
     }
 
     private boolean validateForm() {
-        if (TextUtils.isEmpty(ET_namepill.getText().toString())) {
-            ET_namepill.setError("Required.");
+        if (TextUtils.isEmpty(ET_namepill2.getText().toString())) {
+            ET_namepill2.setError("Required.");
             return false;
-        } else if (TextUtils.isEmpty(ET_num.getText().toString())) {
-            ET_num.setError("Required.");
+        } else if (TextUtils.isEmpty(ET_num2.getText().toString())) {
+            ET_num2.setError("Required.");
             return false;
-        } else if (TextUtils.isEmpty(ET_qua.getText().toString())) {
-            ET_qua.setError("Required.");
+        } else if (TextUtils.isEmpty(ET_qua2.getText().toString())) {
+            ET_qua2.setError("Required.");
             return false;
         } else {
-            ET_namepill.setError(null);
-            ET_num.setError(null);
-            ET_qua.setError(null);
+            ET_namepill2.setError(null);
+            ET_num2.setError(null);
+            ET_qua2.setError(null);
             return true;
         }
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (chb_before.isChecked()==true) {
-            if (chb_breakfast.isChecked() == true) {
+        if (chb_before2.isChecked()==true) {
+            if (chb_breakfast2.isChecked() == true) {
                 arr1[0] = "1";
-            }else if (chb_breakfast.isChecked() == false){
+            }else if (chb_breakfast2.isChecked() == false){
                 arr1[0] = "0";
             }
-            if (chb_lunch.isChecked() == true) {
+            if (chb_lunch2.isChecked() == true) {
                 arr1[1] = "1";
-            }else if (chb_lunch.isChecked() == false) {
+            }else if (chb_lunch2.isChecked() == false) {
                 arr1[1] = "0";
-            }if (chb_dinner.isChecked() == true) {
+            }if (chb_dinner2.isChecked() == true) {
                 arr1[2] = "1";
-            }else if (chb_dinner.isChecked() == false) {
+            }else if (chb_dinner2.isChecked() == false) {
                 arr1[2] = "0";
             }
         }
-        if (chb_before.isChecked() == false) {
+        if (chb_before2.isChecked() == false) {
             arr1[0] = "0";
             arr1[1] = "0";
             arr1[2] = "0";
         }
-        if (chb_after.isChecked()==true) {
-            if (chb_breakfast.isChecked() == true) {
+        if (chb_after2.isChecked()==true) {
+            if (chb_breakfast2.isChecked() == true) {
                 arr1[3] = "1";
-            }else if (chb_breakfast.isChecked() == false){
+            }else if (chb_breakfast2.isChecked() == false){
                 arr1[3] = "0";
-            }if (chb_lunch.isChecked() == true) {
+            }if (chb_lunch2.isChecked() == true) {
                 arr1[4] = "1";
-            }else if (chb_lunch.isChecked() == false) {
+            }else if (chb_lunch2.isChecked() == false) {
                 arr1[4] = "0";
-            }if (chb_dinner.isChecked() == true) {
+            }if (chb_dinner2.isChecked() == true) {
                 arr1[5] = "1";
-            }else if (chb_dinner.isChecked() == false) {
+            }else if (chb_dinner2.isChecked() == false) {
                 arr1[5] = "0";
             }
         }
-        if (chb_after.isChecked() == false) {
+        if (chb_after2.isChecked() == false) {
             arr1[3] = "0";
             arr1[4] = "0";
             arr1[5] = "0";
         }
-        if (chb_night.isChecked()==true) {
+        if (chb_night2.isChecked()==true) {
             arr1[6] = "1";
-                }
-        if (chb_night.isChecked()==false){
+        }
+        if (chb_night2.isChecked()==false){
             arr1[6] = "0";
         }
-        if (chb_don.isChecked()==true){
+        if (chb_don2.isChecked()==true){
             don = 1;
         }
-
     }
 }
