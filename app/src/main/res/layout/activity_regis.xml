@@ -122,7 +122,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:ems="12"
         android:id="@+id/ET_age"
         android:layout_alignBaseline="@+id/text_age"

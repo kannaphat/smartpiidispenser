@@ -68,7 +68,7 @@ public class regis22Activity extends BaseActivity implements CompoundButton.OnCh
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-                    tv_uid.setText("You id = "+user.getEmail());
+                    tv_uid.setText("Your email = "+user.getEmail());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -153,10 +153,10 @@ public class regis22Activity extends BaseActivity implements CompoundButton.OnCh
         postpillsValues.put("Number",num);
         postpillsValues.put("Quantity", qua);
         postpillsValues.put("period", postperiodValues);
-        postpillsValues.put("User id from firebase",user.getUid());
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/PILLS/" + key, postpillsValues);
+        childUpdates.put("/PILLS/" +user.getUid()+"/"+ key, postpillsValues);
+        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL2"+"/", postpillsValues);
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

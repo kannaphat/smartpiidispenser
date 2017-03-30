@@ -1,46 +1,59 @@
 package com.example.kannaphat.smartpiidispenser;
 
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class regis3Activity extends BaseActivity {
+public class regis3Activity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "regis3Activity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
     private DatabaseReference mDatabase,mTimealert;
-    private EditText ET_tbb,ET_tbl,ET_tbd,ET_tab,ET_tal,ET_tad,ET_tan;
+    private TextView tv_tbb,tv_tbl,tv_tbd,tv_tab,tv_tal,tv_tad,tv_tan;
+    final Calendar c = Calendar.getInstance();
+//    int hour = c.get(Calendar.HOUR_OF_DAY);
+//    int minute = c.get(Calendar.MINUTE);
+    int hour,minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regis3);
 
-        ET_tbb = (EditText) findViewById(R.id.ET_tbb);
-        ET_tbl = (EditText) findViewById(R.id.ET_tbl);
-        ET_tbd = (EditText) findViewById(R.id.ET_tbd);
-        ET_tab = (EditText) findViewById(R.id.ET_tab);
-        ET_tal = (EditText) findViewById(R.id.ET_tal);
-        ET_tad = (EditText) findViewById(R.id.ET_tad);
-        ET_tan = (EditText) findViewById(R.id.ET_tan);
+        tv_tbb = (TextView) findViewById(R.id.tv_tbb);
+        tv_tbl = (TextView) findViewById(R.id.tv_tbl);
+        tv_tbd = (TextView) findViewById(R.id.tv_tbd);
+        tv_tab = (TextView) findViewById(R.id.tv_tab);
+        tv_tal = (TextView) findViewById(R.id.tv_tal);
+        tv_tad = (TextView) findViewById(R.id.tv_tad);
+        tv_tan = (TextView) findViewById(R.id.tv_tan);
+        tv_tbb.setOnClickListener(this);
+        tv_tbl.setOnClickListener(this);
+        tv_tbd.setOnClickListener(this);
+        tv_tab.setOnClickListener(this);
+        tv_tal.setOnClickListener(this);
+        tv_tad.setOnClickListener(this);
+        tv_tan.setOnClickListener(this);
+
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -72,10 +85,12 @@ public class regis3Activity extends BaseActivity {
                 alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (!validateForm()) {return;}
+                        if (tv_tan.getText().toString().equals("@string/click")){
+                            return;
+                        }
                         else {
                             puttime();
-                            Intent j = new Intent(regis3Activity.this,LoginActivity.class);
+                            Intent j = new Intent(regis3Activity.this, LoginActivity.class);
                             startActivity(j);
                             finish();
                             hideProgressDialog();
@@ -110,13 +125,13 @@ public class regis3Activity extends BaseActivity {
 
     private void puttime(){
 
-        String tbb = ET_tbb.getText().toString();
-        String tbl = ET_tbl.getText().toString();
-        String tbd = ET_tbd.getText().toString();
-        String tab = ET_tab.getText().toString();
-        String tal = ET_tal.getText().toString();
-        String tad = ET_tad.getText().toString();
-        String tan = ET_tan.getText().toString();
+        String tbb = tv_tbb.getText().toString();
+        String tbl = tv_tbl.getText().toString();
+        String tbd = tv_tbd.getText().toString();
+        String tab = tv_tab.getText().toString();
+        String tal = tv_tal.getText().toString();
+        String tad = tv_tad.getText().toString();
+        String tan = tv_tan.getText().toString();
         String key = mTimealert.push().getKey();
 
         HashMap<String, Object> posttimeValues = new HashMap<>();
@@ -131,42 +146,101 @@ public class regis3Activity extends BaseActivity {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/Time to alert/"+key, posttimeValues);
+        childUpdates.put("/USER-PILLS/"+user.getUid()+"/"+"Time to alert"+"/", posttimeValues);
+
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);
     }
 
-    private boolean validateForm() {
-        if (TextUtils.isEmpty(ET_tbb.getText().toString())) {
-            ET_tbb.setError("Required.");
-            return false;
-        } else if (TextUtils.isEmpty(ET_tbl.getText().toString())) {
-            ET_tbl.setError("Required.");
-            return false;
-        } else if (TextUtils.isEmpty(ET_tbd.getText().toString())) {
-            ET_tbd.setError("Required.");
-            return false;
-        } else if (TextUtils.isEmpty(ET_tab.getText().toString())) {
-            ET_tab.setError("Required.");
-            return false;
-        } else if (TextUtils.isEmpty(ET_tal.getText().toString())) {
-            ET_tal.setError("Required.");
-            return false;
-        } else if (TextUtils.isEmpty(ET_tad.getText().toString())) {
-            ET_tad.setError("Required.");
-            return false;
-        }else if (TextUtils.isEmpty(ET_tan.getText().toString())) {
-            ET_tan.setError("Required.");
-            return false;
-        } else {
-            ET_tbb.setError(null);
-            ET_tbl.setError(null);
-            ET_tbd.setError(null);
-            ET_tab.setError(null);
-            ET_tal.setError(null);
-            ET_tad.setError(null);
-            ET_tan.setError(null);
-            return true;
+    private void TimePicker (){
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+//            @Override
+//            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                mHour = hourOfDay;
+//                mMinute = minute;
+//                tv_tan.setText(mHour + ":" + mMinute);
+//                tv_tad.setText(mHour + ":" + mMinute);
+//            }
+//        }, hour, minute, false
+//        );
+//        timePickerDialog.show();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_tbb:
+                TimePickerDialog timePickerDialog_tbb = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tbb.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tbb.show();
+                break;
+            case R.id.tv_tbl:
+                TimePickerDialog timePickerDialog_tbl = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tbl.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tbl.show();
+                break;
+            case R.id.tv_tbd:
+                TimePickerDialog timePickerDialog_tbd = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tbd.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tbd.show();
+                break;
+            case R.id.tv_tab:
+                TimePickerDialog timePickerDialog_tab = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tab.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tab.show();
+                break;
+            case R.id.tv_tal:
+                TimePickerDialog timePickerDialog_tal = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tal.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tal.show();
+                break;
+            case R.id.tv_tad:
+                TimePickerDialog timePickerDialog_tad = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tad.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tad.show();
+                break;
+            case R.id.tv_tan:
+                TimePickerDialog timePickerDialog_tan = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tv_tan.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false
+                );
+                timePickerDialog_tan.show();
+                break;
         }
     }
 }

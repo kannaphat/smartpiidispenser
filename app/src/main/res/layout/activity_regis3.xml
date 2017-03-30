@@ -49,7 +49,7 @@
         android:layout_below="@+id/text_please"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:id="@+id/text_before" />
 
@@ -58,147 +58,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_before"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/text_bb"
         android:layout_alignRight="@+id/text_before"
         android:layout_alignEnd="@+id/text_before" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tbb"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/text_bb" />
-
-    <TextView
-        android:text="Lunch :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_bl"
-        android:layout_alignBaseline="@+id/ET_tbl"
-        android:layout_alignBottom="@+id/ET_tbl"
-        android:layout_toLeftOf="@+id/text_time"
-        android:layout_toStartOf="@+id/text_time" />
-
-    <TextView
-        android:text="Dinner :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_bd"
-        android:layout_alignBaseline="@+id/ET_tbd"
-        android:layout_alignBottom="@+id/ET_tbd"
-        android:layout_alignRight="@+id/text_bl"
-        android:layout_alignEnd="@+id/text_bl" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tab"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/text_ab" />
-
-    <TextView
-        android:text="After meal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:id="@+id/text_affter"
-        android:layout_below="@+id/ET_tbd"
-        android:layout_marginTop="3dp"
-        android:layout_alignRight="@+id/text_bd"
-        android:layout_alignEnd="@+id/text_bd" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tad"
-        android:layout_below="@+id/ET_tal"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tal"
-        android:layout_below="@+id/ET_tab"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tan"
-        android:layout_below="@+id/ET_tad"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Night :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_an"
-        android:layout_alignBaseline="@+id/ET_tan"
-        android:layout_alignBottom="@+id/ET_tan"
-        android:layout_alignRight="@+id/text_ad"
-        android:layout_alignEnd="@+id/text_ad" />
-
-    <TextView
-        android:text="Lunch :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_al"
-        android:layout_alignBaseline="@+id/ET_tal"
-        android:layout_alignBottom="@+id/ET_tal"
-        android:layout_alignRight="@+id/text_ab"
-        android:layout_alignEnd="@+id/text_ab" />
-
-    <TextView
-        android:text="Dinner :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_ad"
-        android:layout_alignBaseline="@+id/ET_tad"
-        android:layout_alignBottom="@+id/ET_tad"
-        android:layout_alignRight="@+id/text_al"
-        android:layout_alignEnd="@+id/text_al" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tbd"
-        android:layout_below="@+id/ET_tbl"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/ET_tbl"
-        android:layout_below="@+id/ET_tbb"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="Breakfast :"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/text_ab"
         android:layout_below="@+id/text_affter"
         android:layout_alignLeft="@+id/text_affter"
@@ -212,5 +81,138 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tan"
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/text_an"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="Night :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_an"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/text_ad"
+        android:layout_alignRight="@+id/text_ad"
+        android:layout_alignEnd="@+id/text_ad" />
+
+    <TextView
+        android:text="Lunch :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_bl"
+        android:layout_below="@+id/text_bb"
+        android:layout_alignRight="@+id/text_bb"
+        android:layout_alignEnd="@+id/text_bb"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="Dinner :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_bd"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/text_bl"
+        android:layout_alignRight="@+id/text_bl"
+        android:layout_alignEnd="@+id/text_bl" />
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tbb"
+        android:layout_alignBaseline="@+id/text_bb"
+        android:layout_alignBottom="@+id/text_bb"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tbl"
+        android:layout_alignBaseline="@+id/text_bl"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tbd"
+        android:layout_alignBaseline="@+id/text_bd"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tab"
+        android:layout_alignBaseline="@+id/text_ab"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tal"
+        android:layout_alignBaseline="@+id/text_al"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="click to input time!"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tad"
+        android:layout_alignBaseline="@+id/text_ad"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="After meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/text_affter"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/tv_tbd"
+        android:layout_alignRight="@+id/text_bd"
+        android:layout_alignEnd="@+id/text_bd" />
+
+    <TextView
+        android:text="Lunch :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_al"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_tab"
+        android:layout_alignRight="@+id/text_ab"
+        android:layout_alignEnd="@+id/text_ab" />
+
+    <TextView
+        android:text="Dinner :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_ad"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/tv_tal"
+        android:layout_alignRight="@+id/text_affter"
+        android:layout_alignEnd="@+id/text_affter" />
 
 </RelativeLayout>

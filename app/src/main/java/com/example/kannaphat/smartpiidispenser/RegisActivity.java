@@ -48,7 +48,7 @@ public class RegisActivity extends BaseActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-                    tv_uid.setText("You id = "+user.getEmail());
+                    tv_uid.setText("Your email = "+user.getEmail());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -114,18 +114,16 @@ public class RegisActivity extends BaseActivity {
         String disease = ET_disease.getText().toString();
         String hospital = ET_hospital.getText().toString();
 
-        String key = mUsersRef.push().getKey();
         HashMap<String, Object> postprofileValues = new HashMap<>();
         postprofileValues.put("Name",name);
         postprofileValues.put("Ninkname",nickname);
         postprofileValues.put("age", age);
         postprofileValues.put("Congentital disease",disease);
         postprofileValues.put("Hospital",hospital);
-        postprofileValues.put("User id from firebase",user.getUid());
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/USER/" + key, postprofileValues);
-        childUpdates.put("/USER-PILLS/" + key, postprofileValues);
+        childUpdates.put("/USER/"+user.getUid()+"/", postprofileValues);
+        childUpdates.put("/USER-PILLS/" +user.getUid()+"/", postprofileValues);
 
         mDatabase.updateChildren(childUpdates);
     }
