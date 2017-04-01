@@ -34,20 +34,8 @@
         <activity android:name=".editprofileActivity" />
         <activity android:name=".DatapillActivity" />
         <activity android:name=".pill1Activity" />
-        <activity android:name=".pill2Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".pill3Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".pill2Activity"/>
+        <activity android:name=".pill3Activity"/>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
-    private DatabaseReference mDatabase,mPillsRef;
+    private DatabaseReference mDatabase;
     private EditText ET_namepill, ET_num, ET_qua;
     private CheckBox chb_before,chb_after,chb_breakfast,chb_lunch,chb_dinner,chb_night,chb_don;
     private String[] arr1 = new String[7] ;
@@ -78,7 +78,6 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
 
         user = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mPillsRef = mDatabase.child("PILLS");
 
         Button btn_savepill = (Button) findViewById(R.id.btn_savepill);
         btn_savepill.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +136,6 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         String name = ET_namepill.getText().toString();
         String num = ET_num.getText().toString();
         String qua = ET_qua.getText().toString();
-        String key = mPillsRef.push().getKey();
 
         HashMap<String, Object> postperiodValues = new HashMap<>();
         postperiodValues.put("B-B",arr1[0]);
@@ -156,7 +154,7 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL1"+"/", postpillsValues);
-//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL1"+"/", postpillsValues);
+
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

@@ -10,4 +10,171 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kannaphat.smartpiidispenser.pill3Activity">
 
+    <TextView
+        android:text="DATA PILL 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_datapill"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Name :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_Namepill"
+        android:layout_marginTop="80dp" />
+
+    <TextView
+        android:text="Period :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_period"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/text_qua"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Number :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_number"
+        android:layout_alignTop="@id/text_Namepill"
+        android:layout_alignLeft="@+id/text_Namepill"
+        android:layout_alignStart="@+id/text_Namepill"
+        android:layout_marginTop="60dp" />
+
+    <TextView
+        android:text="Quanity : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/text_qua"
+        android:layout_marginTop="60dp"
+        android:layout_alignTop="@+id/text_number"
+        android:layout_alignLeft="@+id/text_Namepill"
+        android:layout_alignStart="@+id/text_Namepill" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ET_shownamepill3"
+        android:layout_alignBaseline="@+id/text_Namepill"
+        android:layout_alignBottom="@+id/text_Namepill"
+        android:layout_toRightOf="@+id/text_number"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/ET_shownum3"
+        android:layout_alignBaseline="@+id/text_number"
+        android:layout_alignBottom="@+id/text_number"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/text_datapill"
+        android:layout_alignStart="@+id/text_datapill" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/ET_showqua3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@+id/text_qua"
+        android:layout_alignBottom="@+id/text_qua"
+        android:layout_alignLeft="@+id/ET_shownum3"
+        android:layout_alignStart="@+id/ET_shownum3" />
+
+    <CheckBox
+        android:text="After"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_showafter3"
+        android:textSize="17dp"
+        android:layout_alignBaseline="@+id/chb_showbefore3"
+        android:layout_alignBottom="@+id/chb_showbefore3"
+        android:layout_toRightOf="@+id/text_datapill"
+        android:layout_toEndOf="@+id/text_datapill" />
+
+    <CheckBox
+        android:text="Before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_showbefore3"
+        android:textSize="17dp"
+        android:layout_alignTop="@+id/text_period"
+        android:layout_toRightOf="@+id/chb_showbreakfast3"
+        android:layout_toEndOf="@+id/chb_showbreakfast3" />
+
+    <CheckBox
+        android:text="Dinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_showdinner3"
+        android:textSize="17dp"
+        android:layout_alignBaseline="@+id/chb_showlunch3"
+        android:layout_alignBottom="@+id/chb_showlunch3"
+        android:layout_alignLeft="@+id/chb_showafter3"
+        android:layout_alignStart="@+id/chb_showafter3" />
+
+    <CheckBox
+        android:text="Night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_shownight3"
+        android:textSize="17dp"
+        android:layout_below="@+id/chb_showbreakfast3"
+        android:layout_alignLeft="@+id/chb_showbreakfast3"
+        android:layout_alignStart="@+id/chb_showbreakfast3"
+        android:layout_marginTop="17dp" />
+
+    <CheckBox
+        android:text="Breakfast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_showbreakfast3"
+        android:textSize="17dp"
+        android:layout_alignBaseline="@+id/chb_showlunch3"
+        android:layout_alignBottom="@+id/chb_showlunch3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_editpill3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp" />
+
+    <CheckBox
+        android:text="Lunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chb_showlunch3"
+        android:textSize="17dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/chb_showbefore3"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

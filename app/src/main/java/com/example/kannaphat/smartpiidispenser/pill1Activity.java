@@ -1,9 +1,14 @@
 package com.example.kannaphat.smartpiidispenser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,13 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class pill1Activity extends BaseActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class pill1Activity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
     private ValueEventListener mValueEventListener;
     private EditText ET_shownamepill1,ET_shownum1,ET_showqua1;
     private DatabaseReference mDatabase;
     private FirebaseUser user;
-    private ImageButton mbtn_editpill1;
     private CheckBox chb_shownight1,chb_showbefore1,chb_showafter1,chb_showbreakfast1,chb_showlunch1,chb_showdinner1;
     private String[] arr1 = new String[7] ;
     private int bb,bl,bd,ab,al,ad,an;
@@ -36,11 +43,46 @@ public class pill1Activity extends BaseActivity {
         ET_shownum1 = (EditText) findViewById(R.id.ET_shownum1);
         ET_showqua1 = (EditText) findViewById(R.id.ET_showqua1);
         chb_showbefore1 = (CheckBox) findViewById(R.id.chb_showbefore1);
+        chb_showbefore1.setOnCheckedChangeListener(this);
         chb_showafter1 = (CheckBox) findViewById(R.id.chb_showafter1);
+        chb_showafter1.setOnCheckedChangeListener(this);
         chb_showbreakfast1 = (CheckBox) findViewById(R.id.chb_showbreakfast1);
+        chb_showbreakfast1.setOnCheckedChangeListener(this);
         chb_showlunch1 = (CheckBox) findViewById(R.id.chb_showlunch1);
+        chb_showlunch1.setOnCheckedChangeListener(this);
         chb_showdinner1 = (CheckBox) findViewById(R.id.chb_showdinner1);
+        chb_showdinner1.setOnCheckedChangeListener(this);
         chb_shownight1 = (CheckBox) findViewById(R.id.chb_shownight1);
+        chb_shownight1.setOnCheckedChangeListener(this);
+
+        Button btn_editpill1 = (Button) findViewById(R.id.btn_editpill1);
+        btn_editpill1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(pill1Activity.this);
+                alert.setMessage("Are you want to save information?");
+                alert.setCancelable(false);
+                alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        showProgressDialog();
+                        putdatapill();
+                        Intent j = new Intent(pill1Activity.this,LoginActivity.class);
+                        startActivity(j);
+                        finish();
+                        hideProgressDialog();
+                    }
+                });
+                alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideProgressDialog();
+                    }
+                });
+                alert.show();
+            }
+        });
     }
 
     @Override
@@ -111,4 +153,82 @@ public class pill1Activity extends BaseActivity {
         }
     }
 
+    private void putdatapill(){
+        String name = ET_shownamepill1.getText().toString();
+        String num = ET_shownum1.getText().toString();
+        String qua = ET_showqua1.getText().toString();
+
+        HashMap<String, Object> postperiodValues = new HashMap<>();
+        postperiodValues.put("B-B",arr1[0]);
+        postperiodValues.put("B-L",arr1[1]);
+        postperiodValues.put("B-D",arr1[2]);
+        postperiodValues.put("A-B",arr1[3]);
+        postperiodValues.put("A-L",arr1[4]);
+        postperiodValues.put("A-D",arr1[5]);
+        postperiodValues.put("N",arr1[6]);
+
+        HashMap<String, Object> postpillsValues = new HashMap<>();
+        postpillsValues.put("Name",name);
+        postpillsValues.put("Number",num);
+        postpillsValues.put("Quantity", qua);
+        postpillsValues.put("period", postperiodValues);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL1"+"/", postpillsValues);
+        showProgressDialog();
+
+        mDatabase.updateChildren(childUpdates);
+    }
+
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (chb_showbefore1.isChecked()==true) {
+            if (chb_showbreakfast1.isChecked() == true) {
+                arr1[0] = "1";
+            }else if (chb_showbreakfast1.isChecked() == false){
+                arr1[0] = "0";
+            }
+            if (chb_showlunch1.isChecked() == true) {
+                arr1[1] = "1";
+            }else if (chb_showlunch1.isChecked() == false) {
+                arr1[1] = "0";
+            }if (chb_showdinner1.isChecked() == true) {
+                arr1[2] = "1";
+            }else if (chb_showdinner1.isChecked() == false) {
+                arr1[2] = "0";
+            }
+        }
+        if (chb_showbefore1.isChecked() == false) {
+            arr1[0] = "0";
+            arr1[1] = "0";
+            arr1[2] = "0";
+        }
+        if (chb_showafter1.isChecked()==true) {
+            if (chb_showbreakfast1.isChecked() == true) {
+                arr1[3] = "1";
+            }else if (chb_showbreakfast1.isChecked() == false){
+                arr1[3] = "0";
+            }if (chb_showlunch1.isChecked() == true) {
+                arr1[4] = "1";
+            }else if (chb_showlunch1.isChecked() == false) {
+                arr1[4] = "0";
+            }if (chb_showdinner1.isChecked() == true) {
+                arr1[5] = "1";
+            }else if (chb_showdinner1.isChecked() == false) {
+                arr1[5] = "0";
+            }
+        }
+        if (chb_showafter1.isChecked() == false) {
+            arr1[3] = "0";
+            arr1[4] = "0";
+            arr1[5] = "0";
+        }
+        if (chb_shownight1.isChecked()==true) {
+            arr1[6] = "1";
+        }
+        if (chb_shownight1.isChecked()==false){
+            arr1[6] = "0";
+        }
+    }
 }

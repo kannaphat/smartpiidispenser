@@ -23,7 +23,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private Button btn_profile, btn_pill, btn_history, btn_qr;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    public String KEY_REMEMBER = "RememberUsername";
+    public String KEY_USERNAME = "username";
 
 
     @Override
@@ -71,6 +71,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mAuth.signOut();
+                        editor.remove(KEY_USERNAME); // will delete key email
+                        editor.commit(); // commit changes
                         Intent gomain = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(gomain);
                         finish();

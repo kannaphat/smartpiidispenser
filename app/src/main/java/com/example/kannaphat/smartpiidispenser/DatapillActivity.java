@@ -31,14 +31,14 @@ public class DatapillActivity extends AppCompatActivity {
         btn_pill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(DatapillActivity.this,pill2Activity.class));
+                startActivity(new Intent(DatapillActivity.this,pill2Activity.class));
             }
         });
         Button btn_pill3 = (Button) findViewById(R.id.btn_pill3);
         btn_pill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(DatapillActivity.this,pill3Activity.class));
+                startActivity(new Intent(DatapillActivity.this,pill3Activity.class));
             }
         });
     }
