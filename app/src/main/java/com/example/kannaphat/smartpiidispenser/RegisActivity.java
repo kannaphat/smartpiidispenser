@@ -116,14 +116,14 @@ public class RegisActivity extends BaseActivity {
 
         HashMap<String, Object> postprofileValues = new HashMap<>();
         postprofileValues.put("Name",name);
-        postprofileValues.put("Ninkname",nickname);
+        postprofileValues.put("Nickname",nickname);
         postprofileValues.put("age", age);
-        postprofileValues.put("Congentital disease",disease);
+        postprofileValues.put("Congenital disease",disease);
         postprofileValues.put("Hospital",hospital);
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/USER/"+user.getUid()+"/", postprofileValues);
-        childUpdates.put("/USER-PILLS/" +user.getUid()+"/", postprofileValues);
+//        childUpdates.put("/USER-PILLS/" +user.getUid()+"/", postprofileValues);
 
         mDatabase.updateChildren(childUpdates);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -11,25 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kannaphat.smartpiidispenser.LoginActivity">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_uid"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_below="@+id/tv_uid"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
 
     <Button
         android:text="Logout"
@@ -78,8 +60,32 @@
         android:text="Profile"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
         android:id="@+id/btn_profile"
         android:gravity="center"
-        android:layout_below="@+id/textView" />
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/tv_uid"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Welcome\nsmart pill dispenser"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/text_welcom"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="your email :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_uid"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/text_welcom"
+        android:layout_alignLeft="@+id/btn_profile"
+        android:layout_alignStart="@+id/btn_profile" />
+
 </RelativeLayout>

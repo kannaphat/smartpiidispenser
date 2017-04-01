@@ -142,30 +142,13 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
         posttimeValues.put("After Lunch",tal);
         posttimeValues.put("After Dinner",tad);
         posttimeValues.put("Night",tan);
-        posttimeValues.put("User id from firebase",user.getUid());
-
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/Time to alert/"+key, posttimeValues);
-        childUpdates.put("/USER-PILLS/"+user.getUid()+"/"+"Time to alert"+"/", posttimeValues);
+        childUpdates.put("/Time to alert/"+user.getUid()+"/", posttimeValues);
+//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/"+"Time to alert"+"/", posttimeValues);
 
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);
-    }
-
-    private void TimePicker (){
-//        TimePickerDialog timePickerDialog = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
-//            @Override
-//            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                mHour = hourOfDay;
-//                mMinute = minute;
-//                tv_tan.setText(mHour + ":" + mMinute);
-//                tv_tad.setText(mHour + ":" + mMinute);
-//            }
-//        }, hour, minute, false
-//        );
-//        timePickerDialog.show();
-
     }
 
     @Override

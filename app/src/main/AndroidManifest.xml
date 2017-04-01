@@ -29,7 +29,25 @@
         <activity android:name=".regis2Activity" />
         <activity android:name=".regis3Activity" />
         <activity android:name=".regis22Activity" />
-        <activity android:name=".regis23Activity"></activity>
+        <activity android:name=".regis23Activity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".editprofileActivity" />
+        <activity android:name=".DatapillActivity" />
+        <activity android:name=".pill1Activity" />
+        <activity android:name=".pill2Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".pill3Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

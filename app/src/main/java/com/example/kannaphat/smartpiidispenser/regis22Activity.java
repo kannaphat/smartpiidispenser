@@ -96,13 +96,13 @@ public class regis22Activity extends BaseActivity implements CompoundButton.OnCh
                             if (don==1) {
                                 Intent j = new Intent(regis22Activity.this,regis3Activity.class);
                                 startActivity(j);
-                                don =0;
+                                don =3;
                             }
-                            else {
-                            Intent k = new Intent(regis22Activity.this, regis23Activity.class);
-                            startActivity(k);
+                            else if (don==0) {
+                                Intent k = new Intent(regis22Activity.this, regis23Activity.class);
+                                startActivity(k);
+                                don = 3;
                             }
-
                         }
                     }
                 });
@@ -155,8 +155,8 @@ public class regis22Activity extends BaseActivity implements CompoundButton.OnCh
         postpillsValues.put("period", postperiodValues);
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/PILLS/" +user.getUid()+"/"+ key, postpillsValues);
-        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL2"+"/", postpillsValues);
+        childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL2"+"/", postpillsValues);
+//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL2"+"/", postpillsValues);
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

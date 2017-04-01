@@ -96,11 +96,12 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
                             if (don==1) {
                                 Intent j = new Intent(regis2Activity.this,regis3Activity.class);
                                 startActivity(j);
-                                don =0;
+                                don =3;
                             }
-                            else {
+                            else if (don==0){
                                 Intent k =new Intent(regis2Activity.this,regis22Activity.class);
                                 startActivity(k);
+                                don =3;
                             }
                         }
                     }
@@ -154,8 +155,8 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         postpillsValues.put("period", postperiodValues);
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/PILLS/" +user.getUid()+"/"+ key, postpillsValues);
-        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL1"+"/", postpillsValues);
+        childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL1"+"/", postpillsValues);
+//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL1"+"/", postpillsValues);
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);
@@ -230,6 +231,9 @@ public class regis2Activity extends BaseActivity implements CompoundButton.OnChe
         }
         if (chb_don.isChecked()==true){
             don = 1;
+        }
+        else if (chb_don.isChecked()==false){
+            don = 0;
         }
 
     }

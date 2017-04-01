@@ -23,7 +23,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private Button btn_profile, btn_pill, btn_history, btn_qr;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    final String KEY_USERNAME = "username";
+    public String KEY_REMEMBER = "RememberUsername";
 
 
     @Override
@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
-                    tv_uid.setText("You id = "+user.getUid());
+                    tv_uid.setText("Your email : "+user.getEmail());
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -60,9 +60,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         };
         sp = getSharedPreferences("statePreferences", Context.MODE_PRIVATE);
         editor = sp.edit();
-
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText("rememberme:"+sp.getString(KEY_USERNAME,""));
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +105,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_profile:
+                startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
                 break;
             case R.id.btn_pil:
+                startActivity(new Intent(LoginActivity.this,DatapillActivity.class));
                 break;
             case R.id.btn_history:
                 break;

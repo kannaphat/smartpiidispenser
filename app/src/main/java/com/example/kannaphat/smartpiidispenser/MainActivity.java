@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.kannaphat.smartpiidispenser.R.layout.dialog_regis;
+
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -36,7 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     final String KEY_USERNAME = "username";
-    final String KEY_REMEMBER = "RememberUsername";
+    public String KEY_REMEMBER = "RememberUsername";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+                    Intent j = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(j);
+                    MainActivity.this.finish();
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -67,25 +74,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // ...
             }
         };
-
-        if (user != null) {
-            Intent j = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(j);
-            finish();
-        }
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUsersRef = mDatabase.child("users");
 
         sp = getSharedPreferences("statePreferences", Context.MODE_PRIVATE);
         editor = sp.edit();
 
+        text_user.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void afterTextChanged(Editable s) {
+                editor = sp.edit();
+                editor.putString(KEY_USERNAME, s.toString());
+                editor.commit();
+            }
+        });
+
         CheckBox chb_remember = (CheckBox) findViewById(R.id.chb_remember);
         chb_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                editor.putBoolean(KEY_REMEMBER, isChecked);
-                editor.commit();
+                    editor.putBoolean(KEY_REMEMBER, isChecked);
+                    editor.commit();
             }
         });
         boolean isRemember = sp.getBoolean(KEY_REMEMBER, false);
@@ -111,30 +121,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void createAccount() {
-        if (!validateForm()) {
-            return;
-        }
-        email = text_user.getText().toString();
-        password = text_pass.getText().toString();
-
-        showProgressDialog();
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        AlertDialog.Builder mB = new AlertDialog.Builder(MainActivity.this);
+        View mV= getLayoutInflater().inflate(dialog_regis, null);
+        final EditText text_user1 = (EditText) mV.findViewById(R.id.text_user1);
+        final EditText text_pass1 = (EditText) mV.findViewById(R.id.text_pass1);
+        Button btn_diregis = (Button) mV.findViewById(R.id.btn_diregis);
+        btn_diregis.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                    hideProgressDialog();
+            public void onClick(View view) {
+                if (!text_user1.getText().toString().isEmpty()&&!text_pass1.getText().toString().isEmpty()){
+                    email = text_user1.getText().toString();
+                    password = text_pass1.getText().toString();
+
+                    showProgressDialog();
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                hideProgressDialog();
+                            }
+                            else {
+                                Intent i = new Intent(MainActivity.this,RegisActivity.class);
+                                startActivity(i);
+                                finish();
+                                hideProgressDialog();
+                            }
+
+                        }
+
+                    });
                 }
                 else {
-                    Intent i = new Intent(MainActivity.this,RegisActivity.class);
-                    startActivity(i);
-                    finish();
-                    hideProgressDialog();
+                    Toast.makeText(MainActivity.this, "please input your information", Toast.LENGTH_SHORT).show();
                 }
-
             }
-
         });
+        mB.setView(mV);
+        AlertDialog alertregis = mB.create();
+        alertregis.show();
     }
 
     public void signIn() {
@@ -164,8 +189,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
      private void forgetpassword () {
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        final View mView = getLayoutInflater().inflate(R.layout.dialog_forget, null);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_forget, null);
         final EditText temail = (EditText) mView.findViewById(R.id.temail);
         Button btn_send = (Button) mView.findViewById(R.id.btn_send);
 
@@ -186,6 +211,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             }
                         }
                     });
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "please input your email", Toast.LENGTH_SHORT).show();
                 }
             }
         });
