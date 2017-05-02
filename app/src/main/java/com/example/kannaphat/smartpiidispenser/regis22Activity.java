@@ -140,12 +140,12 @@ public class regis22Activity extends BaseActivity implements CompoundButton.OnCh
         String key = mPillsRef.push().getKey();
 
         HashMap<String, Object> postperiodValues = new HashMap<>();
-        postperiodValues.put("B-B",arr1[0]);
-        postperiodValues.put("B-L",arr1[1]);
-        postperiodValues.put("B-D",arr1[2]);
-        postperiodValues.put("A-B",arr1[3]);
-        postperiodValues.put("A-L",arr1[4]);
-        postperiodValues.put("A-D",arr1[5]);
+        postperiodValues.put("BB",arr1[0]);
+        postperiodValues.put("BL",arr1[1]);
+        postperiodValues.put("BD",arr1[2]);
+        postperiodValues.put("AB",arr1[3]);
+        postperiodValues.put("AL",arr1[4]);
+        postperiodValues.put("AD",arr1[5]);
         postperiodValues.put("N",arr1[6]);
 
         HashMap<String, Object> postpillsValues = new HashMap<>();

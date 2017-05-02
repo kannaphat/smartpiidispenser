@@ -5,4 +5,5 @@
     <string name="msg_send_success">Send Email Successful</string>
     <string name="error_send">Please fill any empty fields</string>
     <string name="pleaesinput">Pleaes input your information</string>
+    <string name="title_activity_base_logout">BaseLogoutActivity</string>
 </resources>

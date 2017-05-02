@@ -1,12 +1,10 @@
 package com.example.kannaphat.smartpiidispenser;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -61,32 +59,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         sp = getSharedPreferences("statePreferences", Context.MODE_PRIVATE);
         editor = sp.edit();
 
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                alert.setMessage("คุณต้องการออกจากระบบใช่หรือไม่");
-                alert.setCancelable(false);
-                alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        mAuth.signOut();
-                        editor.remove(KEY_USERNAME); // will delete key email
-                        editor.commit(); // commit changes
-                        Intent gomain = new Intent(LoginActivity.this,MainActivity.class);
-                        startActivity(gomain);
-                        finish();
-                    }
-                });
-                alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                alert.show();
-            }
-        });
+//        btn_logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+//                alert.setMessage("คุณต้องการออกจากระบบใช่หรือไม่");
+//                alert.setCancelable(false);
+//                alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        mAuth.signOut();
+//                        Toast.makeText(LoginActivity.this, "logout !", Toast.LENGTH_SHORT).show();
+//                        Intent gomain = new Intent(LoginActivity.this,MainActivity.class);
+//                        startActivity(gomain);
+//                        finish();
+//                    }
+//                });
+//                alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
+//                    }
+//                });
+//                alert.show();
+//            }
+//        });
     }
 
     @Override

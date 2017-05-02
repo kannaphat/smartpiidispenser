@@ -112,13 +112,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if (mAuthListener != null) {
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+//    }
 
     private void createAccount() {
         AlertDialog.Builder mB = new AlertDialog.Builder(MainActivity.this);

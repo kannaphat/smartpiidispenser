@@ -34,8 +34,12 @@
         <activity android:name=".editprofileActivity" />
         <activity android:name=".DatapillActivity" />
         <activity android:name=".pill1Activity" />
-        <activity android:name=".pill2Activity"/>
-        <activity android:name=".pill3Activity"/>
+        <activity android:name=".pill2Activity" />
+        <activity android:name=".pill3Activity" />
+        <activity
+            android:name=".BaseLogoutActivity"
+            android:label="@string/title_activity_base_logout"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

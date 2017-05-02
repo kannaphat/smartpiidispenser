@@ -44,7 +44,8 @@ public class ProfileActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent go = new Intent(ProfileActivity.this,editprofileActivity.class);
                 startActivity(go);
-                finish();
+
+
             }
         });
 

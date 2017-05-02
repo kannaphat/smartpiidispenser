@@ -96,12 +96,12 @@ public class pill1Activity extends BaseActivity implements CompoundButton.OnChec
                 String name = dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("Name").getValue().toString();
                 String num = String.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("Number").getValue().toString());
                 String qua = String.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("Quantity").getValue().toString());
-                bb = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("B-B").getValue().toString());
-                bl = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("B-L").getValue().toString());
-                bd = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("B-D").getValue().toString());
-                ab = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("A-B").getValue().toString());
-                al = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("A-L").getValue().toString());
-                ad = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("A-D").getValue().toString());
+                bb = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("BB").getValue().toString());
+                bl = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("BL").getValue().toString());
+                bd = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("BD").getValue().toString());
+                ab = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("AB").getValue().toString());
+                al = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("AL").getValue().toString());
+                ad = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("AD").getValue().toString());
                 an = Integer.valueOf(dataSnapshot.child("PILLS").child(user.getUid()).child("PILL1").child("period").child("N").getValue().toString());
                 ET_shownamepill1.setText(name);
                 ET_shownum1.setText(num);
