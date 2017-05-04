@@ -135,16 +135,15 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
         String key = mTimealert.push().getKey();
 
         HashMap<String, Object> posttimeValues = new HashMap<>();
-        posttimeValues.put("Before Breakfast",tbb);
-        posttimeValues.put("Before Lunch",tbl);
-        posttimeValues.put("Before Dinner",tbd);
-        posttimeValues.put("After breakfast",tab);
-        posttimeValues.put("After Lunch",tal);
-        posttimeValues.put("After Dinner",tad);
-        posttimeValues.put("Night",tan);
+        posttimeValues.put("BB",tbb);
+        posttimeValues.put("BL",tbl);
+        posttimeValues.put("BD",tbd);
+        posttimeValues.put("AB",tab);
+        posttimeValues.put("AL",tal);
+        posttimeValues.put("AD",tad);
+        posttimeValues.put("N",tan);
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/Time to alert/"+user.getUid()+"/", posttimeValues);
-//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/"+"Time to alert"+"/", posttimeValues);
 
         showProgressDialog();
 
@@ -158,7 +157,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tbb = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tbb.setText(hourOfDay + ":" + minute);
+                        tv_tbb.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -168,7 +167,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tbl = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tbl.setText(hourOfDay + ":" + minute);
+                        tv_tbl.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -178,7 +177,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tbd = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tbd.setText(hourOfDay + ":" + minute);
+                        tv_tbd.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -188,7 +187,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tab = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tab.setText(hourOfDay + ":" + minute);
+                        tv_tab.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -198,7 +197,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tal = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tal.setText(hourOfDay + ":" + minute);
+                        tv_tal.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -208,7 +207,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tad = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tad.setText(hourOfDay + ":" + minute);
+                        tv_tad.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
@@ -218,7 +217,7 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
                 TimePickerDialog timePickerDialog_tan = new TimePickerDialog(regis3Activity.this,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tv_tan.setText(hourOfDay + ":" + minute);
+                        tv_tan.setText(String.format("%02d:%02d", hourOfDay, minute));
                     }
                 }, hour, minute, false
                 );
