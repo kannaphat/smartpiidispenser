@@ -159,12 +159,12 @@ public class pill3Activity extends BaseActivity implements CompoundButton.OnChec
         String qua = ET_showqua3.getText().toString();
 
         HashMap<String, Object> postperiodValues = new HashMap<>();
-        postperiodValues.put("B-B",arr1[0]);
-        postperiodValues.put("B-L",arr1[1]);
-        postperiodValues.put("B-D",arr1[2]);
-        postperiodValues.put("A-B",arr1[3]);
-        postperiodValues.put("A-L",arr1[4]);
-        postperiodValues.put("A-D",arr1[5]);
+        postperiodValues.put("BB",arr1[0]);
+        postperiodValues.put("BL",arr1[1]);
+        postperiodValues.put("BD",arr1[2]);
+        postperiodValues.put("AB",arr1[3]);
+        postperiodValues.put("AL",arr1[4]);
+        postperiodValues.put("AD",arr1[5]);
         postperiodValues.put("N",arr1[6]);
 
         HashMap<String, Object> postpillsValues = new HashMap<>();
@@ -173,8 +173,13 @@ public class pill3Activity extends BaseActivity implements CompoundButton.OnChec
         postpillsValues.put("Quantity", qua);
         postpillsValues.put("period", postperiodValues);
 
+        HashMap<String, Object> remain = new HashMap<>();
+        postpillsValues.put("remain3",num);
+
         Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/Remain/"+user.getUid()+"/", remain);
         childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL3"+"/", postpillsValues);
+
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

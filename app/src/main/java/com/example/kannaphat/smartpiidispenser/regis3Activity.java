@@ -135,13 +135,13 @@ public class regis3Activity extends BaseActivity implements View.OnClickListener
         String key = mTimealert.push().getKey();
 
         HashMap<String, Object> posttimeValues = new HashMap<>();
-        posttimeValues.put("BB",tbb);
-        posttimeValues.put("BL",tbl);
-        posttimeValues.put("BD",tbd);
-        posttimeValues.put("AB",tab);
-        posttimeValues.put("AL",tal);
-        posttimeValues.put("AD",tad);
-        posttimeValues.put("N",tan);
+        posttimeValues.put("TBB",tbb);
+        posttimeValues.put("TBL",tbl);
+        posttimeValues.put("TBD",tbd);
+        posttimeValues.put("TAB",tab);
+        posttimeValues.put("TAL",tal);
+        posttimeValues.put("TAD",tad);
+        posttimeValues.put("TN",tan);
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/Time to alert/"+user.getUid()+"/", posttimeValues);
 

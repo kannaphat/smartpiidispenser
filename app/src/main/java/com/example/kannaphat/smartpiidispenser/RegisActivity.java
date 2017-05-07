@@ -74,7 +74,7 @@ public class RegisActivity extends BaseActivity {
                         else {
                             putprofile();
                             showProgressDialog();
-                            Intent j = new Intent(RegisActivity.this,regis2Activity.class);
+                            Intent j = new Intent(RegisActivity.this,regis22Activity.class);
                             startActivity(j);
                             hideProgressDialog();
                         }

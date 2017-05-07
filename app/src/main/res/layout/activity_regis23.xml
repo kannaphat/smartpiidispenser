@@ -22,7 +22,7 @@
         android:layout_marginTop="50dp"/>
 
     <TextView
-        android:text="DATA PILL3"
+        android:text="DATA PILL2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text_datapill"

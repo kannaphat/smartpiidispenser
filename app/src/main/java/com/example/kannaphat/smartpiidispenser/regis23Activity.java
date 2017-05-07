@@ -144,9 +144,13 @@ public class regis23Activity extends BaseActivity implements CompoundButton.OnCh
         postpillsValues.put("Quantity", qua);
         postpillsValues.put("period", postperiodValues);
 
+        HashMap<String, Object> remain = new HashMap<>();
+        postpillsValues.put("remain3",num);
+
         Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/Remain/"+user.getUid()+"/", remain);
         childUpdates.put("/PILLS/" +user.getUid()+"/"+"PILL3"+"/", postpillsValues);
-//        childUpdates.put("/USER-PILLS/"+user.getUid()+"/" +"PILL3"+"/", postpillsValues);
+
         showProgressDialog();
 
         mDatabase.updateChildren(childUpdates);

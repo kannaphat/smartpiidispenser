@@ -19,14 +19,7 @@ public class DatapillActivity extends BaseActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         TextView tv_uid = (TextView) findViewById(R.id.tv_uid);
         tv_uid.setText("Your email : "+user.getEmail());
-        Button btn_pill1 = (Button) findViewById(R.id.btn_pill1);
-        btn_pill1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DatapillActivity.this,pill1Activity.class));
-                finish();
-            }
-        });
+
         Button btn_pill2 = (Button) findViewById(R.id.btn_pill2);
         btn_pill2.setOnClickListener(new View.OnClickListener() {
             @Override
